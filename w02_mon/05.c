@@ -2,15 +2,32 @@
 #include <assert.h>
 #include <stdlib.h>
 
-typedef unsigned int Word;
+uint32_t getBit(uint32_t w, int bitNumber) {
+	return (w & (1 << bitNumber)) >> bitNumber;
+}
 
-Word reverseBits(Word w) {
-    //todo
-	return 0;
+uint32_t setBit(uint32_t w, int bitNumber) {
+	return w | 1 << bitNumber;
+}
+
+uint32_t reverseBits(uint32_t w) {
+	uint32_t res = 0;
+    int bitNumber = 0;
+	while (bitNumber < 32) {
+		if (getBit(w, bitNumber)) {
+			res = setBit(res, 31 - bitNumber);
+		}
+		// uint32_t wMask = 1 << bitNumber;
+		// uint32_t rMask = 1 << (31 - bitNumber);
+		// res = res | ((w & wMask) >> bitNumber) << (31 - bitNumber);
+
+		bitNumber++;
+	}
+	return res;
 }
 
 int main() {
-	Word w1 = 0x01234567;
+	uint32_t w1 = 0x01234567;
 	//0000 => 0000 = 0
 	//0001 => 1000 = 8
 	//0010 => 0100 = 4
@@ -25,11 +42,11 @@ int main() {
 }
 
 
-/*Word reverseBits(Word w) {
-	Word ret = 0;
+/*uint32_t reverseBits(uint32_t w) {
+	uint32_t ret = 0;
 	for (int bit = 0; bit < 32; bit++) {
-		Word wMask = 1<<(31 - bit);
-		Word retMask = 1<<bit;
+		uint32_t wMask = 1<<(31 - bit);
+		uint32_t retMask = 1<<bit;
 
 		if (w & wMask) {
 			ret = ret | retMask;
