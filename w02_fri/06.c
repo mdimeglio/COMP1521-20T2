@@ -3,7 +3,9 @@
 // setBit(5, 4) == 21
 // 5  = 0b 0000 0000 0000 0101
 // 21 = 0b 0000 0000 0001 0101
-int16_t setBit(int16_t x, int positionNumber);
+int16_t setBit(int16_t x, int positionNumber) {
+    
+}
 
 // Memory for bits
 
@@ -29,8 +31,17 @@ int16_t setBit(int16_t x, int positionNumber);
 
 //
 // given a string of binary digits ('1' and '0')
+//
 // return the corresponding signed 16 bit integer
 //
 int16_t sixteen_in(char *bits) {
-    return 0;
+    int16_t result = 0;
+    int i = 0;
+    while (i < 16) {
+        if (bits[i] == '1') {
+            // set a bit in result corresponding to the character im currently visiting in the bits array
+        }
+        i++;
+    }
+    return result;
 }
